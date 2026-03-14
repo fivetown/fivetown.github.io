@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유 게시판</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        .board-container { max-width: 800px; margin: 2rem auto; padding: 1rem; }
+        .post-card { 
+            padding: 1.5rem; margin-bottom: 1rem; border: 1px solid #e1e4e8; border-radius: 8px; 
+            background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .post-header { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; margin-bottom: 0.5rem; }
+        .post-author { font-weight: bold; color: #1e88e5; }
+        .post-date { font-size: 0.85rem; color: #888; }
+        .post-content { white-space: pre-wrap; margin-top: 10px; }
+        .nav-link { margin-bottom: 1.5rem; display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <main class="container board-container">
+        <a href="index.html" class="nav-link">⬅️ 메인으로 돌아가기</a>
+
+        <header>
+            <h1>📋 자유 게시판</h1>
+            <p>다양한 의견을 남겨주세요.</p>
+        </header>
+
+        <section>
+            <form id="post-form">
+                <input type="text" id="post-author" placeholder="작성자 이름" required>
+                <textarea id="post-content" placeholder="내용을 입력하세요..." rows="3" required></textarea>
+                <button type="submit">글 올리기</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section id="post-list">
+            </section>
+    </main>
+
+    <script>
+        const postForm = document.getElementById('post-form');
+        const postList = document.getElementById('post-list');
+
+        // 1. 페이지 로드 시 게시글 불러오기
+        document.addEventListener('DOMContentLoaded', displayPosts);
+
+        // 2. 글쓰기 기능
+        postForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const author = document.getElementById('post-author').value;
+            const content = document.getElementById('post-content').value;
+            const date = new Date().toLocaleString('ko-KR');
+
+            const newPost = { author, content, date };
+            savePost(newPost);
+            
+            postForm.reset(); // 입력창 비우기
+            displayPosts();
+        });
+
+        // 3. LocalStorage에 저장
+        function savePost(post) {
+            let posts = JSON.parse(localStorage.getItem('myBoardPosts') || '[]');
+            posts.unshift(post); // 최신글이 위로 오게 추가
+            localStorage.setItem('myBoardPosts', JSON.stringify(posts));
+        }
+
+        // 4. 화면에 게시글 표시
+        function displayPosts() {
+            let posts = JSON.parse(localStorage.getItem('myBoardPosts') || '[]');
+            postList.innerHTML = posts.map((post, index) => `
+                <article class="post-card">
+                    <div class="post-header">
+                        <span class="post-author">👤 ${post.author}</span>
+                        <span class="post-date">${post.date}</span>
+                    </div>
+                    <div class="post-content">${post.content}</div>
+                </article>
+            `).join('');
+            
+            if(posts.length === 0) {
+                postList.innerHTML = '<p style="text-align:center; color:#999;">작성된 게시글이 없습니다.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
