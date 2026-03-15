@@ -7,53 +7,29 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; margin: 0;
             background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
             font-family: system-ui, -apple-system, sans-serif;
         }
-        main {
-            text-align: center;
-            padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            max-width: 500px;
-            width: 90%;
-        }
-        .menu-buttons {
-            display: grid;
-            gap: 1.2rem;
-            margin-top: 2.5rem;
-        }
-        h1 { margin-bottom: 0.5rem; font-weight: 800; letter-spacing: -1px; color: #2c3e50; }
+        main { text-align: center; padding: 3rem 2rem; max-width: 500px; width: 90%; }
+        .menu-buttons { display: grid; gap: 1.2rem; margin-top: 2.5rem; }
+        h1 { margin-bottom: 0.5rem; font-weight: 800; color: #2c3e50; }
         p { color: #7f8c8d; font-size: 1.1rem; }
         a[role="button"] { padding: 1.2rem; font-size: 1.1rem; border-radius: 8px; font-weight: 600; transition: transform 0.2s; }
         a[role="button"]:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
-
     <main>
         <hgroup>
-            <h1>Welcome! 👋</h1>
-            <p>Supabase와 Google Docs를 활용한 작업 공간</p>
+            <h1>나의 작업실</h1>
+            <p>Supabase 기반의 개인 작업 공간</p>
         </hgroup>
-
         <section class="menu-buttons">
-            <a href="board.html" role="button" class="outline">📋 게시판</a>
-            <a href="https://docs.google.com/document/d/1-c7SRbAyBaIUv4AJ6wu5cDRP8X-beFp0Fb9kDr9V3no/edit?usp=sharing" target="_blank" rel="noopener noreferrer" role="button" class="contrast">📝 메모장 (Google Docs)</a>
+            <a href="memo.html" role="button" class="contrast">📝 개인 메모장</a>
+            <a href="board.html" role="button">📋 자유 게시판</a>
         </section>
-
-        <footer style="margin-top: 2rem;">
-            <small>Built by FTN</small>
-        </footer>
     </main>
-
 </body>
 </html>
