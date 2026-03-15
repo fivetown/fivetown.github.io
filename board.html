@@ -67,6 +67,7 @@
             const author = document.getElementById('post-author').value;
             const content = document.getElementById('post-content').value;
 
+            // Supabase에 데이터 삽입 (Create)
             const { data, error } = await supabase
                 .from('posts')
                 .insert([{ author, content }]);
@@ -74,12 +75,12 @@
             if (error) {
                 alert('글 작성 실패: ' + error.message);
             } else {
-                postForm.reset();
-                fetchPosts();
+                postForm.reset(); // 입력창 비우기
+                fetchPosts(); // 목록 새로고침
             }
         });
 
-        // 3. Supabase에서 데이터 불러오기
+        // 3. Supabase에서 데이터 불러오기 (Read)
         async function fetchPosts() {
             const { data: posts, error } = await supabase
                 .from('posts')
@@ -91,10 +92,11 @@
                 postList.innerHTML = '<p>게시글을 불러오는데 실패했습니다.</p>';
                 return;
             }
+
             renderPosts(posts);
         }
 
-        // 4. 화면 표시
+        // 4. 화면에 게시글 표시 및 CRUD 버튼 연결
         function renderPosts(posts) {
             postList.innerHTML = posts.map((post) => `
                 <article class="post-card">
@@ -103,10 +105,43 @@
                         <span class="post-date">${new Date(post.created_at).toLocaleString()}</span>
                     </div>
                     <div class="post-content">${post.content}</div>
+                    <div class="post-actions">
+                        <button class="outline" onclick="editPost(${post.id}, '${post.content.replace(/'/g, "\\'")}')">수정</button>
+                        <button class="outline secondary" onclick="deletePost(${post.id})">삭제</button>
+                    </div>
                 </article>
             `).join('');
             
-            if(posts.length === 0) postList.innerHTML = '<p style="text-align:center; color:#999;">작성된 게시글이 없습니다.</p>';
+            if(posts.length === 0) {
+                postList.innerHTML = '<p style="text-align:center; color:#999;">작성된 게시글이 없습니다.</p>';
+            }
+        }
+
+        // 5. 게시글 삭제 (Delete)
+        window.deletePost = async function(id) {
+            if (!confirm('정말 삭제하시겠습니까?')) return;
+
+            const { error } = await supabase
+                .from('posts')
+                .delete()
+                .eq('id', id);
+
+            if (error) alert('삭제 실패: ' + error.message);
+            else fetchPosts();
+        }
+
+        // 6. 게시글 수정 (Update)
+        window.editPost = async function(id, oldContent) {
+            const newContent = prompt('수정할 내용을 입력하세요:', oldContent);
+            if (newContent === null || newContent === oldContent) return;
+
+            const { error } = await supabase
+                .from('posts')
+                .update({ content: newContent })
+                .eq('id', id);
+
+            if (error) alert('수정 실패: ' + error.message);
+            else fetchPosts();
         }
     </script>
 </body>

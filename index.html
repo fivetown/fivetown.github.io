@@ -12,24 +12,29 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #f4f7f6;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            font-family: system-ui, -apple-system, sans-serif;
         }
         main {
             text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             max-width: 500px;
             width: 90%;
         }
         .menu-buttons {
             display: grid;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 1.2rem;
+            margin-top: 2.5rem;
         }
-        h1 { margin-bottom: 0.5rem; }
-        p { color: #666; }
+        h1 { margin-bottom: 0.5rem; font-weight: 800; letter-spacing: -1px; color: #2c3e50; }
+        p { color: #7f8c8d; font-size: 1.1rem; }
+        a[role="button"] { padding: 1.2rem; font-size: 1.1rem; border-radius: 8px; font-weight: 600; transition: transform 0.2s; }
+        a[role="button"]:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
@@ -46,7 +51,7 @@
         </section>
 
         <footer style="margin-top: 2rem;">
-            <small>Built with ❤️ and HTML/CSS</small>
+            <small>Built by FTN</small>
         </footer>
     </main>
 
