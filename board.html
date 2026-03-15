@@ -39,9 +39,8 @@
     <script>
         // Supabase 설정 (본인의 정보로 유지)
         const SUPABASE_URL = 'https://celuomuboxcwkqjawnzk.supabase.co';
-        const SUPABASE_KEY = '        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlbHVvbXVib3hjd2txamF3bnprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyNjg4MDksImV4cCI6MjA4ODg0NDgwOX0.bBtFB5wk8JsE5cgBno7PfJeZHHvhP3XFXkSKM7r7SZw';
-';
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlbHVvbXVib3hjd2txamF3bnprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyNjg4MDksImV4cCI6MjA4ODg0NDgwOX0.bBtFB5wk8JsE5cgBno7PfJeZHHvhP3XFXkSKM7r7SZw';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         const postForm = document.getElementById('post-form');
         const postList = document.getElementById('post-list');
@@ -129,6 +128,7 @@
 
         // 초기 실행
         fetchPosts();
-    </script>
+
+</script>
 </body>
 </html>
