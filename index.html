@@ -4,31 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나의 작업실</title>
+    <!-- 디자인을 위한 Pico CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <style>
-        body {
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; margin: 0;
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            font-family: system-ui, -apple-system, sans-serif;
-        }
-        main { text-align: center; padding: 3rem 2rem; max-width: 500px; width: 90%; }
-        .menu-buttons { display: grid; gap: 1.2rem; margin-top: 2.5rem; }
-        h1 { margin-bottom: 0.5rem; font-weight: 800; color: #2c3e50; }
-        p { color: #7f8c8d; font-size: 1.1rem; }
-        a[role="button"] { padding: 1.2rem; font-size: 1.1rem; border-radius: 8px; font-weight: 600; transition: transform 0.2s; }
-        a[role="button"]:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        :root { --primary: #1095c1; }
+        .main-container { max-width: 800px; margin: 2rem auto; padding: 1rem; }
+        .menu-card { padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 12px; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eee; transition: transform 0.2s; text-decoration: none; display: block; }
+        .menu-card:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); text-decoration: none; }
+        .menu-title { font-weight: bold; color: var(--primary); font-size: 1.2rem; display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; }
+        .menu-desc { color: #666; font-size: 0.95rem; margin-bottom: 0; }
+        header { margin-bottom: 3rem; }
     </style>
 </head>
 <body>
-    <main>
-        <hgroup>
-            <h1>나의 작업실</h1>
-            <p>FiveTN의 공간</p>
-        </hgroup>
-        <section class="menu-buttons">
-            <a href="https://docs.google.com/document/d/1-c7SRbAyBaIUv4AJ6wu5cDRP8X-beFp0Fb9kDr9V3no/edit?tab=t.0" role="button" class="contrast" target="_blank" rel="noopener noreferrer">📝 개인 메모장</a>
-            <a href="board.html" role="button">📋 자유 게시판</a>
+    <main class="container main-container">
+        <header>
+            <h1 style="margin-bottom: 0.5rem;">🏠 나의 작업실</h1>
+            <p>FiveTN의 개인 작업 공간입니다.</p>
+        </header>
+
+        <section id="menu-section">
+            <a href="https://docs.google.com/document/d/1-c7SRbAyBaIUv4AJ6wu5cDRP8X-beFp0Fb9kDr9V3no/edit?tab=t.0" class="menu-card" target="_blank" rel="noopener noreferrer">
+                <div class="menu-title">📝 개인 메모장</div>
+                <p class="menu-desc">중요한 아이디어와 기록을 보관하는 구글 문서 링크입니다.</p>
+            </a>
+
+            <a href="board.html" class="menu-card">
+                <div class="menu-title">📋 자유 게시판</div>
+                <p class="menu-desc">누구나 자유롭게 의견을 남길 수 있는 소통 공간입니다.</p>
+            </a>
         </section>
     </main>
 </body>
